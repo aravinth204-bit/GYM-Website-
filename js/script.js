@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initPricingTabs();
     initContactForm();
     initSmoothScroll();
+    initScrollTop();
 });
 
 // ==========================================
@@ -177,7 +178,10 @@ function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const target = document.querySelector(targetId);
             
             if (target) {
                 const navHeight = document.getElementById('navbar').offsetHeight;
@@ -188,6 +192,28 @@ function initSmoothScroll() {
                     behavior: 'smooth'
                 });
             }
+        });
+    });
+}
+
+// ==========================================
+// SCROLL TOP BUTTON
+// ==========================================
+function initScrollTop() {
+    const scrollTop = document.getElementById('scrollTop');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            scrollTop.classList.add('active');
+        } else {
+            scrollTop.classList.remove('active');
+        }
+    });
+
+    scrollTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
     });
 }
