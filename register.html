@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join FitZone Gym - Start your fitness transformation today">
+    <title>Join FitZone | Gym Membership</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="auth-page">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo">💪 FitZone Gym</a>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="login.html" class="nav-link">Member Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Register Section -->
+    <section class="auth-section">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h1>Join FitZone Today!</h1>
+                    <p>Start your fitness journey with us and achieve your goals</p>
+                </div>
+
+                <form id="registerForm" class="auth-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" placeholder="Full name" required autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="Email" required autocomplete="email">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="password" placeholder="Password" required autocomplete="new-password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="confirmPassword" placeholder="Confirm" required autocomplete="new-password">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="planType">Choose Membership Plan</label>
+                        <select id="planType" class="plan-select" required>
+                            <option value="">Select a plan</option>
+                            <option value="fitness-1" data-price="1800">Fitness - 1 Month (₹1800)</option>
+                            <option value="fitness-3" data-price="3300">Fitness - 3 Months (₹3300)</option>
+                            <option value="fitness-6" data-price="7500">Fitness - 6 Months (₹7500)</option>
+                            <option value="yoga-3" data-price="3200">Fitness + Yoga - 3 Months (₹3200)</option>
+                            <option value="yoga-6" data-price="5500">Fitness + Yoga - 6 Months (₹5500)</option>
+                            <option value="zumba-6" data-price="7500">Fitness + Zumba - 6 Months (₹7500)</option>
+                            <option value="zumba-12" data-price="17500">Fitness + Zumba - 1 Year (₹17500)</option>
+                            <option value="personal-1" data-price="5000">Personal Training - 1 Month (₹5000)</option>
+                        </select>
+                        <span class="error-message" id="planError"></span>
+                    </div>
+
+                    <div class="form-group" id="paymentSection" style="display: none;">
+                        <label>Payment Method</label>
+                        <div class="payment-methods">
+                            <label class="payment-option">
+                                <input type="radio" name="paymentMethod" value="upi" checked>
+                                <span>UPI / Google Pay / PhonePe</span>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="paymentMethod" value="cash">
+                                <span>Pay at Gym</span>
+                            </label>
+                        </div>
+                        <div id="paymentDetails">
+                            <p class="payment-note">UPI Payment: Scan QR code at gym or pay at counter</p>
+                        </div>
+                        <div class="payment-total" id="paymentTotal">
+                            <span>Total Amount: </span>
+                            <span class="amount" id="totalAmount">₹0</span>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeTerms" required>
+                            <span>I agree to the <a href="#">Membership Terms & Conditions</a></span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Join FitZone</button>
+                </form>
+
+                <div class="auth-footer">
+                    <p>Already a member? <a href="login.html">Login here</a></p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

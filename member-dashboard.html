@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Dashboard | FitZone Gym</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/member-dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon"><i class="fas fa-dumbbell"></i></span>
+                    <span class="logo-text">FitZone</span>
+                    <span class="logo-accent">Gym</span>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-th-large"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#profile" class="nav-item" data-section="profile">
+                    <i class="fas fa-user"></i>
+                    <span>My Profile</span>
+                </a>
+                <a href="#plan" class="nav-item" data-section="plan">
+                    <i class="fas fa-id-card"></i>
+                    <span>My Plan</span>
+                </a>
+                <a href="#schedule" class="nav-item" data-section="schedule">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Class Schedule</span>
+                </a>
+                <a href="#workouts" class="nav-item" data-section="workouts">
+                    <i class="fas fa-dumbbell"></i>
+                    <span>Workouts</span>
+                </a>
+                <a href="#diet" class="nav-item" data-section="diet">
+                    <i class="fas fa-apple-alt"></i>
+                    <span>Diet Plans</span>
+                </a>
+                <a href="#progress" class="nav-item" data-section="progress">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Progress</span>
+                </a>
+                <a href="#trainers" class="nav-item" data-section="trainers">
+                    <i class="fas fa-user-friends"></i>
+                    <span>Trainers</span>
+                </a>
+                <a href="#bookings" class="nav-item" data-section="bookings">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>Bookings</span>
+                </a>
+                <a href="#" class="nav-item" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div>
+                        <h1 id="welcomeMessage">Welcome, Member!</h1>
+                        <p>Track your fitness journey</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="member-info">
+                        <div class="member-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="member-details">
+                            <span class="member-name" id="headerMemberName">Member</span>
+                            <span class="member-status">Active Member</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="content-section active">
+                <div class="section-header">
+                    <h2>Dashboard Overview</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="membershipDays">0</span>
+                            <span class="stat-label">Days Active</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="attendanceCount">0</span>
+                            <span class="stat-label">Total Visits</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="currentPlan">No Plan</span>
+                            <span class="stat-label">Current Plan</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="planExpiry">-</span>
+                            <span class="stat-label">Days Left</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Current Membership Plan</h3>
+                        <div id="planStatusBody">
+                            <div class="no-plan">
+                                <i class="fas fa-info-circle"></i>
+                                <p>No active plan yet</p>
+                                <button class="btn-choose" onclick="openPlanModal()">Choose a Plan</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Recent Activity</h3>
+                        <div class="activity-list" id="activityList">
+                            <div class="activity-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Welcome to FitZone Gym!</span>
+                                <small>Today</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile-section" class="content-section">
+                <div class="section-header">
+                    <h2>My Profile</h2>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-details">
+                        <h3 id="profileName">Member Name</h3>
+                        <p id="profileEmail">member@email.com</p>
+                        <p>Member since: <span id="profileJoinDate">-</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Plan Section -->
+            <section id="plan-section" class="content-section">
+                <div class="section-header">
+                    <h2>My Membership Plan</h2>
+                </div>
+                <div id="planDetailsContainer">
+                    <div class="no-plan">
+                        <i class="fas fa-id-card"></i>
+                        <p>No active plan</p>
+                        <button class="btn-choose" onclick="openPlanModal()">Choose a Plan</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Schedule Section -->
+            <section id="schedule-section" class="content-section">
+                <div class="section-header">
+                    <h2>Class Schedule</h2>
+                </div>
+                <div class="schedule-grid">
+                    <div class="schedule-card">
+                        <h4><i class="fas fa-sun"></i> Monday - Friday</h4>
+                        <ul>
+                            <li><span>6:00 AM - 8:00 AM</span> Morning Workout</li>
+                            <li><span>10:00 AM - 12:00 PM</span> Yoga Class</li>
+                            <li><span>4:00 PM - 6:00 PM</span> Evening Workout</li>
+                            <li><span>7:00 PM - 8:00 PM</span> Zumba</li>
+                        </ul>
+                    </div>
+                    <div class="schedule-card">
+                        <h4><i class="fas fa-star"></i> Saturday</h4>
+                        <ul>
+                            <li><span>6:00 AM - 9:00 AM</span> Full Body</li>
+                            <li><span>10:00 AM - 12:00 PM</span> Yoga</li>
+                        </ul>
+                    </div>
+                    <div class="schedule-card">
+                        <h4><i class="fas fa-sun"></i> Sunday</h4>
+                        <ul>
+                            <li><span>6:00 AM - 2:00 PM</span> Open Gym</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Workouts Section -->
+            <section id="workouts-section" class="content-section">
+                <div class="section-header">
+                    <h2>Workout Exercises</h2>
+                </div>
+                <div class="workouts-filter">
+                    <button class="filter-btn active" data-category="all">All</button>
+                    <button class="filter-btn" data-category="chest">Chest</button>
+                    <button class="filter-btn" data-category="back">Back</button>
+                    <button class="filter-btn" data-category="arms">Arms</button>
+                    <button class="filter-btn" data-category="legs">Legs</button>
+                </div>
+                <div class="workouts-grid">
+                    <div class="workout-card" data-category="chest">
+                        <div class="workout-icon"><i class="fas fa-dumbbell"></i></div>
+                        <h4>Bench Press</h4>
+                        <p>Chest - 3 sets x 12 reps</p>
+                        <span class="difficulty beginner">Beginner</span>
+                    </div>
+                    <div class="workout-card" data-category="chest">
+                        <div class="workout-icon"><i class="fas fa-dumbbell"></i></div>
+                        <h4>Push Ups</h4>
+                        <p>Chest - 3 sets x 15 reps</p>
+                        <span class="difficulty beginner">Beginner</span>
+                    </div>
+                    <div class="workout-card" data-category="back">
+                        <div class="workout-icon"><i class="fas fa-dumbbell"></i></div>
+                        <h4>Pull Ups</h4>
+                        <p>Back - 3 sets x 8 reps</p>
+                        <span class="difficulty intermediate">Intermediate</span>
+                    </div>
+                    <div class="workout-card" data-category="arms">
+                        <div class="workout-icon"><i class="fas fa-dumbbell"></i></div>
+                        <h4>Bicep Curls</h4>
+                        <p>Arms - 3 sets x 12 reps</p>
+                        <span class="difficulty beginner">Beginner</span>
+                    </div>
+                    <div class="workout-card" data-category="legs">
+                        <div class="workout-icon"><i class="fas fa-dumbbell"></i></div>
+                        <h4>Squats</h4>
+                        <p>Legs - 4 sets x 15 reps</p>
+                        <span class="difficulty beginner">Beginner</span>
+                    </div>
+                    <div class="workout-card" data-category="chest">
+                        <div class="workout-icon"><i class="fas fa-dumbbell"></i></div>
+                        <h4>Chest Fly</h4>
+                        <p>Chest - 3 sets x 12 reps</p>
+                        <span class="difficulty intermediate">Intermediate</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Diet Section -->
+            <section id="diet-section" class="content-section">
+                <div class="section-header">
+                    <h2>Diet & Nutrition</h2>
+                </div>
+                <div class="diet-tabs">
+                    <button class="diet-tab active" data-plan="weight-loss">Weight Loss</button>
+                    <button class="diet-tab" data-plan="muscle-gain">Muscle Gain</button>
+                    <button class="diet-tab" data-plan="maintenance">Maintenance</button>
+                </div>
+                <div class="diet-content">
+                    <div class="diet-day">
+                        <h4>Breakfast</h4>
+                        <ul id="breakfastList">
+                            <li>Oatmeal with fruits</li>
+                            <li>Green tea</li>
+                        </ul>
+                    </div>
+                    <div class="diet-day">
+                        <h4>Lunch</h4>
+                        <ul id="lunchList">
+                            <li>Grilled chicken</li>
+                            <li>Brown rice</li>
+                        </ul>
+                    </div>
+                    <div class="diet-day">
+                        <h4>Snacks</h4>
+                        <ul id="snacksList">
+                            <li>Nuts</li>
+                            <li>Greek yogurt</li>
+                        </ul>
+                    </div>
+                    <div class="diet-day">
+                        <h4>Dinner</h4>
+                        <ul id="dinnerList">
+                            <li>Lean protein</li>
+                            <li>Salad</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="nutrition-tracker">
+                    <h4>Daily Nutrition Tracker</h4>
+                    <div class="tracker-form">
+                        <input type="number" id="caloriesInput" placeholder="Calories">
+                        <input type="number" id="proteinInput" placeholder="Protein (g)">
+                        <input type="number" id="carbsInput" placeholder="Carbs (g)">
+                        <input type="number" id="waterInput" placeholder="Water (L)">
+                        <button onclick="saveNutrition()">Save</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress Section -->
+            <section id="progress-section" class="content-section">
+                <div class="section-header">
+                    <h2>Progress Tracking</h2>
+                </div>
+                <div class="progress-stats">
+                    <div class="progress-stat">
+                        <span>Starting</span>
+                        <strong id="startWeight">- kg</strong>
+                    </div>
+                    <div class="progress-stat">
+                        <span>Current</span>
+                        <strong id="currentWeight">- kg</strong>
+                    </div>
+                    <div class="progress-stat highlight">
+                        <span>Change</span>
+                        <strong id="weightChange">- kg</strong>
+                    </div>
+                </div>
+                <div class="progress-form">
+                    <h4>Log Your Weight</h4>
+                    <div class="weight-input">
+                        <input type="number" id="weightLogInput" placeholder="Weight (kg)" step="0.1">
+                        <button onclick="logWeight()">Log</button>
+                    </div>
+                </div>
+                <div class="photo-upload">
+                    <h4>Progress Photos</h4>
+                    <label class="upload-area">
+                        <i class="fas fa-camera"></i>
+                        <span>Upload Photo</span>
+                        <input type="file" id="photoInput" accept="image/*" multiple>
+                    </label>
+                    <div class="photo-gallery" id="photoGallery"></div>
+                </div>
+            </section>
+
+            <!-- Trainers Section -->
+            <section id="trainers-section" class="content-section">
+                <div class="section-header">
+                    <h2>Our Trainers</h2>
+                </div>
+                <div class="trainers-grid">
+                    <div class="trainer-card">
+                        <div class="trainer-img"><i class="fas fa-user"></i></div>
+                        <h4>Rajesh Kumar</h4>
+                        <span>Strength Training</span>
+                        <button>Book Session</button>
+                    </div>
+                    <div class="trainer-card">
+                        <div class="trainer-img"><i class="fas fa-user"></i></div>
+                        <h4>Priya Sharma</h4>
+                        <span>Yoga</span>
+                        <button>Book Session</button>
+                    </div>
+                    <div class="trainer-card">
+                        <div class="trainer-img"><i class="fas fa-user"></i></div>
+                        <h4>Arjun Reddy</h4>
+                        <span>HIIT & Cardio</span>
+                        <button>Book Session</button>
+                    </div>
+                    <div class="trainer-card">
+                        <div class="trainer-img"><i class="fas fa-user"></i></div>
+                        <h4>Meera Patel</h4>
+                        <span>Zumba</span>
+                        <button>Book Session</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bookings Section -->
+            <section id="bookings-section" class="content-section">
+                <div class="section-header">
+                    <h2>Class Bookings</h2>
+                </div>
+                <div class="booking-form">
+                    <select id="classType">
+                        <option value="">Select Class</option>
+                        <option value="morning">Morning Workout (6AM)</option>
+                        <option value="yoga">Yoga (10AM)</option>
+                        <option value="evening">Evening (4PM)</option>
+                        <option value="zumba">Zumba (7PM)</option>
+                    </select>
+                    <input type="date" id="classDate">
+                    <button onclick="bookClass()">Book Class</button>
+                </div>
+                <div class="bookings-list" id="bookedClasses">
+                    <p>No classes booked yet</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Plan Modal -->
+    <div class="modal" id="planModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closePlanModal()">&times;</span>
+            <h3>Choose Your Plan</h3>
+            <div class="plans-grid">
+                <div class="plan-option" data-plan="basic" data-price="1800">
+                    <h4>Basic</h4>
+                    <p class="price">₹1,800<span>/month</span></p>
+                    <ul>
+                        <li>Gym Access</li>
+                        <li>Cardio Equipment</li>
+                        <li>Locker</li>
+                    </ul>
+                    <button>Select</button>
+                </div>
+                <div class="plan-option popular" data-plan="pro" data-price="2200">
+                    <span class="popular">Most Popular</span>
+                    <h4>Pro</h4>
+                    <p class="price">₹2,200<span>/month</span></p>
+                    <ul>
+                        <li>All Basic</li>
+                        <li>4 PT Sessions</li>
+                        <li>Group Classes</li>
+                        <li>Nutrition Guide</li>
+                    </ul>
+                    <button>Select</button>
+                </div>
+                <div class="plan-option" data-plan="premium" data-price="5000">
+                    <h4>Premium</h4>
+                    <p class="price">₹5,000<span>/month</span></p>
+                    <ul>
+                        <li>All Pro</li>
+                        <li>Unlimited PT</li>
+                        <li>Custom Meal Plan</li>
+                        <li>24/7 Access</li>
+                    </ul>
+                    <button>Select</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/member-dashboard.js"></script>
+</body>
+</html>
